@@ -1,0 +1,108 @@
+import java.util.Scanner;
+
+public class Degree {
+
+    public static void main(String[] args) {
+
+	// need array list of temps
+	// find high, low, average
+	Scanner scan = new Scanner(System.in);
+
+	int[] temps = { 89, 90, 45, 06, 100, 32, 55 };
+
+	System.out.println("Maximum number is " + max(temps));
+	System.out.println("Minimum number is " + min(temps));
+	System.out.println("Average number is " + avg(temps, 0));
+
+	System.out.println("Enter two numbers from the list: 89, 90, 45, 06, 100, 32, 55. An average will be given");
+
+	System.out.print("Enter first number: ");
+	int a = scan.nextInt();
+
+	System.out.print("Enter second number: ");
+	int b = scan.nextInt();
+
+	boolean num1 = check_first_number(a, temps);
+	boolean num2 = check_second_number(b, temps);
+
+	try {
+
+	    if ((num1 == true) & (num2 == true)) {
+		int sum = a + b;
+		int avg = sum / 2;
+		System.out.println("Average number is: " + avg);
+		
+	    }else {
+	    throw new Exception("Number you entered are not in the list. Please try again!");
+	    }
+
+	} catch (Exception e) {
+	    System.out.println(e);
+	}
+
+    }
+
+
+
+    public static boolean check_first_number(int a, int[] temps) {
+
+	boolean num1_exists = false;
+
+	for (int element : temps) {
+	    if (element == a) {
+		num1_exists = true;
+		break;
+	    }
+	    num1_exists = false;  
+	}
+	return num1_exists;
+    }
+
+    public static boolean check_second_number(int b, int[] temps) {
+	boolean num2_exists = false;
+	for (int element : temps) {
+	    if (element == b) {
+		num2_exists = true;
+		break;
+	    }
+	    num2_exists = false;
+	}
+	return num2_exists;
+    }
+
+    public static int max(int[] temps) {
+	int max = temps[0];
+	for (int i = 1; i < temps.length; i++) {
+	    if (temps[i] > max) {
+		max = temps[i];
+	    }
+	}
+	return max;
+    }
+
+    // find the min value
+    public static int min(int[] temps) {
+	int min = temps[0];
+	for (int i = 1; i < temps.length; i++) {
+	    if (temps[i] < min) {
+
+		min = temps[i];
+	    }
+	}
+	return min;
+
+    }
+
+    // find the average of the array
+    public static int avg(int[] temps, int num) {
+	int avg = temps[0];
+	num = 0;
+
+	for (int i = 0; i < temps.length; i++) {
+	    num = num + temps[i];
+	    avg = num / temps.length;
+	}
+	return avg;
+    }
+
+}
